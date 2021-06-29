@@ -9,14 +9,19 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        
+        {{#if user}}
         <li class="nav-item">
           <a class="nav-link " href="/logout" tabindex="-1" aria-disabled="true">logout</a>
         </li>
+        {{else}}  
 
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+
+        {{/if}}
+
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{#if user}}
