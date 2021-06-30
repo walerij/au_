@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const sett = require("./package.json")
+
 let passport = require("passport")
 
 var LocalStrategy = require('passport-local').Strategy;
@@ -64,11 +66,15 @@ hbs.registerPartials(__dirname + "/views/partials");
 
 app.get('/', (req, res) => {
   // console.log(req.user)
-  res.render('home',{ user: req.user })
+  res.render('home',{ user: req.user, version: sett.version })
 })
 
 app.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login',{ version: sett.version})
+  })
+
+  app.get('/messages', (req, res) => {
+    res.render('messages',{ user: req.user, version: sett.version })
   })
 
   
