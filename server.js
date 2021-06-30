@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
 const port = 3000
-
 const sett = require("./package.json")
 
 let passport = require("passport")
+var favicon = require('serve-favicon')
+var path = require('path')
+
+app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 var LocalStrategy = require('passport-local').Strategy;
 const expressHbs = require("express-handlebars");
@@ -40,7 +43,6 @@ passport.use(new LocalStrategy(
   }
 ));
 
-
 // устанавливаем настройки для файлов layout
 app.engine("hbs", expressHbs(
     {
@@ -60,7 +62,6 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
 });
-
 
 hbs.registerPartials(__dirname + "/views/partials");
 
