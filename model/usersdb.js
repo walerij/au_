@@ -45,7 +45,7 @@ exports.findByUsername=function(username, cb){
           }
         }
         
-        console.log('no...')
+        //console.log('no...')
         return cb(null, null);
       });
 }

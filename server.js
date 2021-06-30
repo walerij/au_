@@ -11,15 +11,7 @@ const hbs = require("hbs");
 app.set("view engine", "hbs");
 var db =require("./model")
 
-/*const template = hbs.compile("{{aString.trim}}");
-const result = template(
-  { aString: "  abc  " },
-  {
-    allowedProtoMethods: {
-      trim: true,username:true
-    }
-  }
-);*/
+
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
@@ -39,7 +31,7 @@ passport.use(new LocalStrategy(
       if (user.password != password) { 
         console.log("неверный логин или парол")
         return cb(null, false); }
-      console.log("все гуд")
+     // console.log("все гуд")
      // console.log(user)
       return cb(null, user);
     });
