@@ -29,6 +29,7 @@ passport.use(new LocalStrategy(
     db.users.findByUsername(username, function(err, user) {
       if (err) { 
         console.log(err)
+
         return cb(err); }
       if (!user) {
         console.log("нет пользователя")

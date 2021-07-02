@@ -6,7 +6,11 @@ const userScheme = new Schema({
     id:Number,
     username: String,
     password: String,
-    link: String
+    link: String,
+    nick:String,
+    dtr:String,
+    city:String,
+    status:String
 });
   
 // подключение
