@@ -79,18 +79,40 @@ app.get('/login', (req, res) => {
     res.render('messages',{ user: req.user, version: sett.version })
   })
 
-  
+  app.post('/messages',(req,res)=>
+ { 
+    res.redirect('/messages') 
+ })  
  app.post('/login',  
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login' })
 );
 
+app.get('/addmessage', (req, res) => {
+  res.render('addmessage',{ user: req.user, version: sett.version })
+})
+
+app.post('/addmessage',(req,res)=>{
+  if(!req.body) return response.sendStatus(400);
+  //console.log(req.body.user_from);
+  db.messages.create(req.body.user_from, 
+                     req.body.user_to, 
+                     req.body.textmess,
+                     "2021-02-20",
+                     "черновик"
+                                         
+                     )
+  //req.body.user_from - из формы - от кого
+  res.redirect('/')
+
+})
 
 app.get('/logout',
   function(req, res){
     req.logout();
     res.redirect('/');
   });
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
